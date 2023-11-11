@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Simple Table</title>
+</h:head>
+<h:body>
+    <h:dataTable value="#{simpleTableBean.data}" var="t">
+        <h:column>
+            <f:facet name="header">Ranking</f:facet>
+            #{t.ranking}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Name</f:facet>
+            #{t.player}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Age</f:facet>
+            #{t.age}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Birthplace</f:facet>
+            #{t.birthplace}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Residence</f:facet>
+            #{t.residence}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Height (cm)</f:facet>
+            #{t.height}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Weight (kg)</f:facet>
+            #{t.weight}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Coach</f:facet>
+            #{t.coach}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Born</f:facet>
+            <h:outputText value="#{t.born}">
+                <f:convertDateTime pattern="dd.MM.yyyy" />
+            </h:outputText>
+        </h:column>
+    </h:dataTable>
+</h:body>
+</html>
