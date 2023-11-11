@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Login</title>
+</h:head>
+<h:body>
+    <h:form>
+        <f:event listener="#{loginBean.validateLoginDetails}" type="postValidate" />
+        <h1>Please enter your details</h1>
+        <h:panelGrid columns="2">
+            <h:outputText value="Enter your name"/>
+            <h:inputText id="username" value="#{loginBean.username}" required="true" requiredMessage="Username required"/>
+            <h:outputText value="Enter your password"/>
+            <h:inputSecret id="password" value="#{loginBean.password}" required="true" requiredMessage="Password required"/>
+            <h:commandButton action="#{loginBean.login()}" value="Login">
+                <f:ajax execute="@form" render="@form"/>
+                <!--<f:ajax execute="@form" render="loginMessage"/>-->
+            </h:commandButton>
+        </h:panelGrid>
+        <h:panelGrid>
+            <h:message for="username" style="color: red;" />
+            <h:message for="password" style="color: red;" />
+            <h:outputText id="loginStatus"/>
+            <h:message for="loginStatus" style="color: blue;" />
+        </h:panelGrid>
+        <h:panelGrid>
+            <ui:remove>
+                <h:outputText id="loginMessage" value="#{loginBean.loginMessage}"/>
+            </ui:remove>
+        </h:panelGrid>
+    </h:form>
+</h:body>
+</html>
