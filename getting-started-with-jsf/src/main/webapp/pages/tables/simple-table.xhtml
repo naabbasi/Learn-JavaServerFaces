@@ -8,7 +8,24 @@
     <title>Simple Table</title>
 </h:head>
 <h:body>
-    <h:dataTable value="#{simpleTableBean.data}" var="t">
+    <h:form>
+        <f:event listener="#{simpleTableBean.validateDateCriteria}" type="postValidate" />
+        <h1>Please enter your details</h1>
+        <h:panelGrid columns="2">
+            <h:outputText value="Select Start Date"/>
+            <h:inputText id="startDate" value="#{simpleTableBean.startDate}" required="true"/>
+            <h:outputText value="Select End Date"/>
+            <h:inputSecret id="endDate" value="#{simpleTableBean.endDate}" required="true"/>
+            <h:commandButton action="#{simpleTableBean.showData()}" value="View Data">
+                <f:ajax execute="@form" render="@all"/>
+            </h:commandButton>
+        </h:panelGrid>
+        <h:panelGrid>
+            <h:outputText id="criteria"/>
+            <h:message for="criteria" style="color: red;" />
+        </h:panelGrid>
+    </h:form>
+    <h:dataTable id="simpleTable" value="#{simpleTableBean.data}" var="t">
         <h:column>
             <f:facet name="header">Ranking</f:facet>
             #{t.ranking}
