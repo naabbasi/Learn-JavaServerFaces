@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>JavaCodeGeeks</title>
+</h:head>
+<h:body>
+    <h:panelGroup>
+        <h:form>
+            <h:commandButton value="Settlements (Set Property Action)" action="#{sessionBeanDemo.changeView}">
+                <f:setPropertyActionListener value="Settlements" target="#{sessionBeanDemo.view}"/>
+            </h:commandButton>
+            <h:commandButton value="Settlements" action="#{sessionBeanDemo.changeView('Settlements')}">
+                <f:ajax />
+            </h:commandButton>
+            <h:commandButton value="Payouts" action="#{sessionBeanDemo.changeView('Payouts')}">
+                <f:ajax execute="@form" render="@form"/>
+            </h:commandButton>
+        </h:form>
+    </h:panelGroup>
+    <div>
+        <h:panelGroup id="settlementPages" rendered="#{sessionBeanDemo.view == 'Settlements'}">
+            <h:outputText value="#{sessionBeanDemo.view}"/>
+        </h:panelGroup>
+
+        <h:panelGroup id="payoutPages" rendered="#{sessionBeanDemo.view == 'Payouts'}">
+            <h:outputText value="#{sessionBeanDemo.view}"/>
+        </h:panelGroup>
+    </div>
+</h:body>
+</html>
